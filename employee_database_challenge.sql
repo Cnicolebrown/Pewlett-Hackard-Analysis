@@ -1,6 +1,3 @@
--- Analysis was conducted on microsoft SQL server 
-
---  Deliverable 1.
 SELECT e.emp_no,
        e.first_name,
        e.last_name,
@@ -8,14 +5,13 @@ SELECT e.emp_no,
        t.from_date,
        t.to_date
 INTO retirement_titles
-FROM employees$ as e
-INNER JOIN titles$ as t
+FROM employees as e
+INNER JOIN titles as t
 ON (e.emp_no = t.emp_no)
 WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 order by e.emp_no;
 
--- Use Dictinct 
-SELECT DISTINCT (emp_no) emp_no,
+SELECT DISTINCT ON (emp_no) emp_no,
 first_name,
 last_name,
 title
@@ -23,16 +19,17 @@ INTO unique_titles
 FROM retirement_titles
 ORDER BY emp_no, title DESC;
 
--- Retrieve the number of employees  
-SELECT count (dbo.unique_titles.emp_no),
-dbo.unique_titles.title
-FROM dbo.unique_titles 
+-- Retrieve the number of employees by their most recent job title who are about to retire.
+SELECT COUNT(ut.emp_no),
+ut.title
 INTO retiring_titles
+FROM unique_titles as ut
 GROUP BY title 
-ORDER BY count (title) DESC;
+ORDER BY COUNT(title) DESC;
 
--- Deliverable 2
-SELECT DISTINCT  e.emp_no, 
+select * from retiring_titles
+
+SELECT DISTINCT ON(e.emp_no) e.emp_no, 
     e.first_name, 
     e.last_name, 
     e.birth_date,
@@ -40,10 +37,12 @@ SELECT DISTINCT  e.emp_no,
     de.to_date,
     t.title
 INTO mentorship_eligibilty
-FROM dbo.employees$ as e
-Left outer Join dbo.dept_emp$ as de
+FROM employees as e
+Left outer Join dept_emp as de
 ON (e.emp_no = de.emp_no)
-Left outer Join dbo.titles$ as t
+Left outer Join titles as t
 ON (e.emp_no = t.emp_no)
 WHERE (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 ORDER BY e.emp_no;
+
+select * from mentorship_eligibilty
