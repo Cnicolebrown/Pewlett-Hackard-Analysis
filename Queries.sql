@@ -1,4 +1,4 @@
---data and table creation was ommited from this sql code. 
+-- data and table creation was ommited from this sql code. 
 SELECT first_name, last_name
 FROM employees$
 WHERE birth_date BETWEEN '1952-01-01' AND '1955-12-31';
