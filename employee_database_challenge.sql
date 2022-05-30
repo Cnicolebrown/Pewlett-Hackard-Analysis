@@ -1,3 +1,4 @@
+-- Analysis was conducted on microsoft SQL server 
 
 --  Deliverable 1.
 SELECT e.emp_no,
