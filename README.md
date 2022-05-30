@@ -7,7 +7,9 @@ The purpose of this analysis is to determine the number of employees retiring al
 
 --Results: 
 1.	The general staff employee has the highest count of retirements. 
+
 ![image](https://user-images.githubusercontent.com/103790879/171054757-0fe4042c-b458-4a30-8e67-f3a527ae6d3e.png)
+
 2. The lowest amount of staff retirement are assistant engineers. 
 3. Staff mentorship has the highest number of candidates that are eligible for the mentorship program. 
 4. Conversely assistant engineer has the smallest amount of candidates as well. 
